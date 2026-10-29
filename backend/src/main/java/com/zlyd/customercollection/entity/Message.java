@@ -1,0 +1,26 @@
+package com.zlyd.customercollection.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+@TableName("message")
+public class Message {
+
+    @TableId(type = IdType.AUTO)
+    private Long id;
+    private Long userId;
+    private Integer messageType;
+    private String title;
+    private String content;
+    private Integer bizType;
+    private Long bizId;
+    private Long ruleId;
+    private Integer izRead;
+    private LocalDateTime readTime;
+    private LocalDateTime createTime;
+}

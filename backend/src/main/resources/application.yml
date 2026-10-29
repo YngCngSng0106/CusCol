@@ -1,0 +1,70 @@
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  application:
+    name: customer-collection
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:customer_collection}?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+  jackson:
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:465}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+
+app:
+  captcha-enabled: ${CAPTCHA_ENABLED:true}
+  jwt:
+    secret: ${JWT_SECRET:customer-collection-jwt-secret-key-please-change-in-production-2026}
+    expire-hours: 168
+  file:
+    root: ${FILE_UPLOAD_ROOT:./upload}
+    url-prefix: ${FILE_URL_PREFIX:/upload}
+  mail:
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:no-reply@example.com}
+    code-expire-minutes: 10
+  reminder:
+    enabled: ${REMINDER_ENABLED:true}
+    cron: ${REMINDER_CRON:0 0 8 * * *}
+  demo-user:
+    enabled: ${DEMO_USER_ENABLED:true}
+
+logging:
+  level:
+    com.zlyd.customercollection: info

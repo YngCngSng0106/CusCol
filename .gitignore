@@ -1,0 +1,25 @@
+# Java
+backend/target/
+backend/*.log
+backend/*.err
+backend/*.pid
+backend/upload/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Test / local artifacts
+backend/token.txt
+backend/test-*.png
+backend/test-*.pdf
+backend/*-test.json
+token.txt
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
